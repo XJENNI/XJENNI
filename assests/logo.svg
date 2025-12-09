@@ -1,0 +1,153 @@
+<!--
+  assets/jenni-logo.svg
+  A self-contained, modern 3D-styled SVG logo for "Jenni".
+  - includes gradients, lighting filter and subtle animation
+  - safe to use directly in GitHub README (refer to it via ./assets/jenni-logo.svg)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Jenni 3D Logo">
+  <defs>
+    <!-- Main gradient for the face -->
+    <linearGradient id="g-face" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ff6aa3"/>
+      <stop offset="0.45" stop-color="#ff3c7a"/>
+      <stop offset="1" stop-color="#c7007e"/>
+    </linearGradient>
+
+    <!-- Secondary gradient for extrusion -->
+    <linearGradient id="g-extrude" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#7a1a6b"/>
+      <stop offset="1" stop-color="#2b0036"/>
+    </linearGradient>
+
+    <!-- Highlight gradient -->
+    <radialGradient id="g-highlight" cx="30%" cy="25%" r="60%">
+      <stop offset="0" stop-color="rgba(255,255,255,0.9)"/>
+      <stop offset="0.25" stop-color="rgba(255,255,255,0.4)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+
+    <!-- Soft shadow -->
+    <filter id="f-drop" x="-50%" y="-50%" width="200%" height="200%">
+      <feOffset in="SourceAlpha" dx="0" dy="16" result="off"/>
+      <feGaussianBlur in="off" stdDeviation="18" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0
+                                                      0 0 0 0 0
+                                                      0 0 0 0 0
+                                                      0 0 0 0.35" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Specular light (subtle) -->
+    <filter id="f-light" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="sbl"/>
+      <feSpecularLighting in="sbl" surfaceScale="4" specularConstant="0.6" specularExponent="20" lighting-color="#ffffff" result="spec">
+        <fePointLight x="-200" y="-200" z="600"/>
+      </feSpecularLighting>
+      <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn"/>
+      <feMerge>
+        <feMergeNode in="specIn"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- CSS animations -->
+    <style>
+      <![CDATA[
+        @keyframes float {
+          0% { transform: translateY(0px) rotate(-1deg); }
+          50% { transform: translateY(-8px) rotate(1deg); }
+          100% { transform: translateY(0px) rotate(-1deg); }
+        }
+
+        @keyframes sheen {
+          0% { transform: translateX(-120%); opacity: 0.0; }
+          10% { opacity: 0.25; }
+          50% { transform: translateX(120%); opacity: 0.6; }
+          90% { opacity: 0.25; }
+          100% { transform: translateX(120%); opacity: 0.0; }
+        }
+
+        .logo-wrap {
+          transform-origin: center;
+          animation: float 6s ease-in-out infinite;
+        }
+
+        .sheen {
+          mix-blend-mode: screen;
+          animation: sheen 3.8s ease-in-out infinite;
+        }
+      ]]>
+    </style>
+  </defs>
+
+  <!-- background circle for contrast -->
+  <rect width="100%" height="100%" fill="#0b0510"/>
+
+  <g class="logo-wrap" transform="translate(300,300)">
+    <!-- extruded base (multiple offset shapes to mimic depth) -->
+    <g transform="translate(0,10)">
+      <path d="M-120,-80 L-20,-80 L40,80 L-40,80 L-80,0 L-120,-80 Z" fill="url(#g-extrude)" opacity="0.95"/>
+      <path d="M-100,-60 L-8,-60 L56,60 L-24,60 L-72,0 L-100,-60 Z" fill="url(#g-extrude)" opacity="0.8" transform="translate(6,6)"/>
+    </g>
+
+    <!-- main face of the J monogram -->
+    <g filter="url(#f-drop)">
+      <path id="face" d="M-110,-70
+                        C -70,-110 10,-110 40,-70
+                        C 80,-30 64,14 20,52
+                        C 0,74 -18,90 -42,104
+                        C -70,120 -96,108 -104,88
+                        C -110,72 -86,36 -58,14
+                        C -40,0 -14,-8 10,-10
+                        C 36,-12 60,0 80,26
+                        L 58,26
+                        C 44,6 22,-2 4,-2
+                        C -30,0 -54,34 -64,54
+                        C -72,70 -58,84 -34,76
+                        C -12,68 6,54 24,36
+                        C 40,20 56,0 42,-10
+                        C 20,-26 -10,-18 -36,6
+                        C -56,26 -82,20 -100,-2
+                        C -120,-28 -120,-28 -110,-70 Z"
+            fill="url(#g-face)"/>
+      <!-- highlight overlay -->
+      <path d="M-80,-60 C -40,-92 6,-92 36,-60 C 66,-28 52,12 18,46 C 4,60 -14,76 -36,86 C -62,98 -84,92 -92,76 C -100,58 -80,30 -54,8 C -36,-8 -10,-18 10,-20 C 32,-22 56,-6 70,10 L 50,12 C 38,-4 20,-12 4,-12 C -12,-12 -36,-2 -58,18 C -78,36 -98,36 -110,20 C -122,4 -128,-20 -110,-60 Z"
+            fill="url(#g-highlight)" opacity="0.45" />
+
+      <!-- subtle specular -->
+      <g filter="url(#f-light)">
+        <ellipse cx="8" cy="-30" rx="58" ry="30" fill="rgba(255,255,255,0.05)"/>
+      </g>
+    </g>
+
+    <!-- glossy sheen (animated) -->
+    <g class="sheen" opacity="0.9" transform="rotate(-18)">
+      <rect x="-220" y="-170" width="440" height="80" fill="white" opacity="0.08" rx="40" />
+    </g>
+
+    <!-- thin stroke for crispness -->
+    <path d="M-110,-70
+             C -70,-110 10,-110 40,-70
+             C 80,-30 64,14 20,52
+             C 0,74 -18,90 -42,104
+             C -70,120 -96,108 -104,88
+             C -110,72 -86,36 -58,14
+             C -40,0 -14,-8 10,-10
+             C 36,-12 60,0 80,26"
+          fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- subtle rim light -->
+    <path d="M-118,-76 L-20,-76 L44,84 L-44,84 L-84,4 L-118,-76 Z"
+          fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="6" stroke-linejoin="round"/>
+
+    <!-- small tag text 'Jenni' under the logo (optional, scalable) -->
+    <g transform="translate(0,170)">
+      <text x="0" y="0" font-family="Inter, Arial, Helvetica, sans-serif" font-weight="700" font-size="36" text-anchor="middle" fill="#FFD9EF" opacity="0.95" style="letter-spacing:1.2px">
+        Jenni
+      </text>
+    </g>
+  </g>
+</svg>
