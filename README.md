@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- display the generated 3D logo -->
-<img src="assests/logo.svg" alt="Jenni 3D Logo" width="280" />
+<img src="assests/IMG_1043.jpeg" alt="Jenni 3D Logo" width="280" />
 
 # 👋 Hey there — I'm Jenni
 
