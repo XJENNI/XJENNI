@@ -95,7 +95,6 @@ Learning Phase → Building Phase → Mastery Phase
 
 - 🎓 Passionate about learning new technologies every day  
 - 🌙 Night coder & coffee enthusiast ☕  
-- 🎮 Gamer in spare time  
 - 🎨 Love UI/UX Design & beautiful interfaces
 
 ---
